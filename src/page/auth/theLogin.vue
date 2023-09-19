@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import server from "@/api/server.js"
 export default {
   data() {
     return {
@@ -41,7 +42,25 @@ export default {
   },
   methods: {
     submitForm(){
-       console.log("login")
+      const mydata = new FormData() ;
+      mydata.append("username" , this.email);
+      mydata.append("password" , this.password);
+      this.axios({
+        method: "POST",
+        url: "/dashboard/login",
+        data: mydata,
+      })
+      .then((response) => {
+          console.log("login ")
+          console.log(response);
+          this.$store.commit("setCurrentUserData", 
+           response.data.data,
+
+          );
+            // this.$router.push("/");
+        })
+
+      //  console.log("login")
     }
   }
 };
