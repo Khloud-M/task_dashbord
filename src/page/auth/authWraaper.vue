@@ -41,4 +41,7 @@ export default {};
 form {
   margin: 20px 0;
 }
+img{
+  width: 350px;
+}
 </style>
