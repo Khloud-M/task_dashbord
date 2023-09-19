@@ -6,8 +6,10 @@
       </div>
       <router-view></router-view>
     </v-col>
+    <!-- end content -->
     <v-col class="image" cols="lg-6">
     </v-col>
+    <!-- end image -->
   </v-row>
 </template>
 
