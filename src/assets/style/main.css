@@ -44,6 +44,7 @@ a {
   background-color: transparent !important;
   opacity: 1 !important;
   border: 2px solid var(--main-color);
+  border: 2px solid black;
   border-radius: 30px;
 }
 
@@ -64,6 +65,11 @@ input[type=submit] {
   padding: 10px;
   width: 150px;
   font-weight: bold;
+  transition: all 0.5 linear;
+}
+input[type=submit]:hover{
+  background-color: rgba(254, 142, 0,0.8);
+
 }
 .v-locale--is-ltr {
   direction: rtl !important;

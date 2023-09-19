@@ -7,16 +7,15 @@
     <h2>تسجيل دخول ع لوحة تحكم</h2>
   </div>
   <form @submit.prevent="submitForm">
-    <v-text-field
-      label=" رقم الجوال"
-      type="tel"
-      v-model="phone"
-    ></v-text-field>
+    <v-text-field label=" رقم الجوال"
+    prepend-inner-icon="mdi-phone"
+    type="tel" v-model="phone"></v-text-field>
     <v-text-field
       label=" كلمة المرور"
       v-model="password"
       :type="show ? 'text' : 'password'"
       :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+      prepend-inner-icon="mdi-lock-outline"
       @click:append-inner="show = !show"
     ></v-text-field>
     <input type="submit" value="تسجيل الدخول" :is-loading="isLoading" />
@@ -114,7 +113,7 @@ a {
   font-size: 18px;
   transition: all 0.5s linear;
 }
-a:hover{
+a:hover {
   color: #ff0000;
 }
 /* .text- */
