@@ -1,9 +1,15 @@
-:root{
-    --main-color:#febe00;
-    --main_bg_clr: #dfdfdf;
-    --second-color:#232323;
-    --main_box_shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+:root {
+  --main-color:#febe00;
+  --main_bg_clr: #dfdfdf;
+  --second-color:#232323;
+  --main_box_shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 /* // START:: FONT */
 @font-face {
   font-family: font;
@@ -30,13 +36,15 @@
   src: url("../fonts/Cairo-SemiBold.ttf");
 }
 /* // END:: FONT */
-a{
+a {
   text-decoration: none;
 }
-h3{
+
+h3 {
   color: var(--gray-color);
   font-size: 21px;
 }
+
 /* .active{
   color: gray;
 } */
@@ -46,15 +54,18 @@ h3{
   border: 2px solid var(--main-color);
   border-radius: 30px;
 }
+
 .v-field--variant-filled .v-field__outline::before, .v-field--variant-underlined .v-field__outline::before {
   border-color: transparent !important;
   border-style: none !important;
 }
+
 .v-field--variant-filled .v-field__outline::after, .v-field--variant-underlined .v-field__outline::after {
-border-color: transparent !important;
+  border-color: transparent !important;
   border-style: none !important;
 }
-input[type="submit"]  {
+
+input[type=submit] {
   background-color: var(--main-color);
   color: white;
   border-radius: 20px;
@@ -62,29 +73,39 @@ input[type="submit"]  {
   width: 150px;
   font-weight: bold;
 }
-.active{
+
+.active {
   /* background-color: red; */
   color: var(--main-color);
 }
+
 .v-locale--is-ltr {
   direction: rtl !important;
   width: 100%;
 }
+
 .v-field--center-affix .v-label.v-field-label {
   font-size: 18px;
   color: var(--second-color);
 }
-.v-text-field input.v-field__input{
+
+.v-text-field input.v-field__input {
   height: 65px;
 }
+
 .v-input--density-default .v-field--variant-solo .v-label.v-field-label--floating, .v-input--density-default .v-field--variant-solo-inverted .v-label.v-field-label--floating, .v-input--density-default .v-field--variant-filled .v-label.v-field-label--floating, .v-input--density-default .v-field--variant-solo-filled .v-label.v-field-label--floating {
   top: -16px;
-  background-color: withe;
+  /* background-color: withe; */
   background: var(--main_bg_clr);
   right: 20px;
   font-size: 20px;
+  color: var(--second-color);
+  /* color: white; */
+
 }
+
+
 .v-text-field .v-field {
   cursor: text;
   margin: 10px 0;
-}
+}/*# sourceMappingURL=main.css.map */

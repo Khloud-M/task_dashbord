@@ -1,34 +1,22 @@
 <template>
-  <!-- <v-row class="login"> -->
-  <!-- <v-col class="content" cols="lg-6" style="background-color: red;"> -->
   <div>
-    <!-- <img src="@/assets/image/logo.png" alt="logo" /> -->
-    <h2>تسجيل الدخول</h2>
-    <h2>تسجيل دخول ع لوحة تحكم</h2>
+    <h2>إرسال الكود</h2>
   </div>
   <form @submit.prevent="submitForm">
     <v-text-field
-      label=" رقم الجوال"
+      label=" رقم الهاتف"
       type="tel"
-      v-model="phone"
+      v-modal="phone"
+      append-inner-icon="mdi-phone"
     ></v-text-field>
-    <v-text-field
-      label=" كلمة المرور"
-      v-model="password"
-      :type="show ? 'text' : 'password'"
-      :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-      @click:append-inner="show = !show"
-    ></v-text-field>
-    <input type="submit" value="تسجيل الدخول" :is-loading="isLoading" />
+    <input type="submit" value=" إرسال" :is-loading="isLoading" />
     <!-- <base-button :isLoading="isLoading">تسجيل الدخول</base-button> -->
-    <router-link to="/forgetpass"> نسيت كلمة المرور</router-link>
+    <!-- <router-link to="/forgetpass">  نسيت كلمة المرور</router-link> -->
   </form>
-  <!-- </v-col> -->
   <!-- <v-col class="image" cols="lg-6">
       <img src="@/assets/image/login_img.jpg" alt="image" />
       image
     </v-col> -->
-  <!-- </v-row> -->
 </template>
 
 <script>
@@ -40,10 +28,7 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
       phone: null,
-      password: null,
-      show: false,
     };
   },
   methods: {
@@ -51,18 +36,17 @@ export default {
       this.isLoading = true;
       const mydata = new FormData();
       mydata.append("phone", this.phone);
-      mydata.append("password", this.password);
       this.axios({
         method: "POST",
-        url: "https://apis.quickly-egypt.com/admin/users/auth/login.php",
+        url: "https://apis.quickly-egypt.com/admin/users/auth/forget_password/send_code.php",
         data: mydata,
       })
-        .then((response) => {
-          console.log("login ");
-          console.log(response);
-          // this.$store.commit("setCurrentUserData", response.data.data);
-          // this.$router.push("/");
-          this.$toast.success(`تم تسجيل الدخول بنجاح `);
+        .then(() => {
+          console.log("forgeet ");
+          localStorage.setItem("phone_num", this.phone);
+          this.$router.push("/varifactionCode");
+          this.$toast.success(`تمت   بنجاح `);
+
         })
         .catch((error) => {
           this.isLoading = false;
@@ -104,18 +88,5 @@ h2 {
 }
 form {
   margin: 20px 0;
-  width: 80%;
-  margin: auto;
-  /* background-color: green; */
 }
-a {
-  color: var(--second-color);
-  padding: 0 10px;
-  font-size: 18px;
-  transition: all 0.5s linear;
-}
-a:hover{
-  color: #ff0000;
-}
-/* .text- */
 </style>

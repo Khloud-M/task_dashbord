@@ -3,17 +3,11 @@
   <!-- <v-col class="content" cols="lg-6" style="background-color: red;"> -->
   <div>
     <!-- <img src="@/assets/image/logo.png" alt="logo" /> -->
-    <h2>تسجيل الدخول</h2>
-    <h2>تسجيل دخول ع لوحة تحكم</h2>
+    <h2> تعين الرقم السري</h2>
   </div>
   <form @submit.prevent="submitForm">
     <v-text-field
-      label=" رقم الجوال"
-      type="tel"
-      v-model="phone"
-    ></v-text-field>
-    <v-text-field
-      label=" كلمة المرور"
+      label="   كلمة المرور الجديدة"
       v-model="password"
       :type="show ? 'text' : 'password'"
       :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
@@ -50,18 +44,18 @@ export default {
     submitForm() {
       this.isLoading = true;
       const mydata = new FormData();
-      mydata.append("phone", this.phone);
-      mydata.append("password", this.password);
+      mydata.append("id", 1);
+      mydata.append("new_password", this.password);
       this.axios({
         method: "POST",
-        url: "https://apis.quickly-egypt.com/admin/users/auth/login.php",
+        url: "https://apis.quickly-egypt.com/admin/users/auth/forget_password/edit_password.php",
         data: mydata,
       })
         .then((response) => {
           console.log("login ");
           console.log(response);
           // this.$store.commit("setCurrentUserData", response.data.data);
-          // this.$router.push("/");
+          this.$router.push("/");
           this.$toast.success(`تم تسجيل الدخول بنجاح `);
         })
         .catch((error) => {
