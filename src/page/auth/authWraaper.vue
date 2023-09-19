@@ -26,6 +26,7 @@ export default {};
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  height: 100%;
 }
 .image {
   background-image: url("../../assets/image/cover.webp");

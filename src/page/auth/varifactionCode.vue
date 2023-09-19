@@ -17,25 +17,14 @@
         @on-complete="handleOnComplete"
         v-model="verification_code"
       />
-      <!-- <input type="text" placeholder="cpde"  v-model="verification_code"> -->
     </div>
     <input type="submit" value=" تأكيد" :is-loading="isLoading" />
-    <!-- <base-button :isLoading="isLoading">تسجيل الدخول</base-button> -->
-    <!-- <router-link to="/forgetpass">  نسيت كلمة المرور</router-link> -->
   </form>
-  <!-- <v-col class="image" cols="lg-6">
-      <img src="@/assets/image/login_img.jpg" alt="image" />
-      image
-    </v-col> -->
+
 </template>
 
 <script>
-import server from "@/api/server.js";
-import VueButtonSpinner from "vue-button-spinner";
 export default {
-  components: {
-    VueButtonSpinner,
-  },
   data() {
     return {
       verification_code: null,
@@ -44,7 +33,6 @@ export default {
   },
   methods: {
     submitForm() {
-      this.isLoading = true;
       const mydata = new FormData();
       mydata.append("verification_code", this.verification_code);
       this.axios({
@@ -53,25 +41,23 @@ export default {
         data: mydata,
       })
         .then(() => {
-          console.log("confirm ");
           this.$router.push("/editPassword");
           this.$toast.success(`تمت   بنجاح `);
         })
-        .catch((error) => {
-          this.isLoading = false;
-          console.log(error);
+        .catch(() => {
           this.$toast.error(` بياناتك غير صحيحة`);
         });
 
-      //  console.log("login")
     },
   },
 };
 </script>
 <style >
 .myOtp{
-  /* width: 70%; */
-  margin: auto;
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  margin: 25px auto;
 }
 .otp-input {
   width: 60px;
@@ -97,45 +83,10 @@ input::placeholder {
   text-align: center;
   font-weight: 600;
 }
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  height: 100%;
-  background-color: var(--main_bg_clr);
-}
-.image img {
-  width: 100%;
-  height: 100%;
-}
-.content {
-  text-align: center;
-  /* background-color: var(--main_bg_clr); */
-  /* height: 100%; */
-  padding: 30px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-}
 h2 {
   padding: 3px 0;
+  margin-bottom: 10px;
   color: #232323;
-}
-form {
-  margin: 20px 0;
-  width: 80%;
-  margin: auto;
-  /* background-color: green; */
-}
-a {
-  color: var(--second-color);
-  padding: 0 10px;
-  font-size: 18px;
-  transition: all 0.5s linear;
-}
-a:hover{
-  color: #ff0000;
 }
 
 /* .text- */
