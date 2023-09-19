@@ -13,6 +13,7 @@ import "@/assets/style/main.css"
 // import VueAxios from 'vue-axios'
 import axios from "axios";
 import VueAxios from "vue-axios";
+import Toaster from "@meforma/vue-toaster";
 axios.defaults.headers = {
   baseURL: "https://speed4ever.elsaed.aait-d.com",
   headers: {
@@ -27,6 +28,7 @@ const app = createApp(App);
 registerPlugins(app);
 app.use(router);
 app.use(store);
+app.use(Toaster);
 app.use(VueAxios, axios);
 // app.use(VueAxios, axios)
 app.mount("#app");

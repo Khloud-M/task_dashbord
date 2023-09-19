@@ -19,7 +19,7 @@
           :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append-inner="show = !show"
         ></v-text-field>
-        <input  type="submit" value="تسجيل الدخول" />
+        <input  type="submit" value="تسجيل الدخول"  :loading="isLoading"/>
       </form>
     </v-col>
     <v-col class="image" cols="lg-6">
@@ -35,6 +35,7 @@ import server from "@/api/server.js"
 export default {
   data() {
     return {
+      isLoading: false,
       email: null,
       password: null,
       show: false,
@@ -53,12 +54,18 @@ export default {
       .then((response) => {
           console.log("login ")
           console.log(response);
-          this.$store.commit("setCurrentUserData", 
+          this.$store.commit("setCurrentUserData",
            response.data.data,
 
           );
             // this.$router.push("/");
+            this.$toast.success(`تم تسجيل الدخول بنجاح `);
         })
+        .catch((error) => {
+          this.isLoading = false;
+          console.log(error);
+          this.$toast.error(` بياناتك غير صحيحة`);
+        });
 
       //  console.log("login")
     }
