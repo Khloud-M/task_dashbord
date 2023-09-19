@@ -6,7 +6,7 @@
         <h2>تسجيل الدخول</h2>
         <h2>تسجيل دخول ع لوحة تحكم</h2>
       </div>
-      <form>
+      <form @submit.prevent="submitForm">
         <v-text-field
           label="البريد الإلكتروني"
           type="email"
@@ -19,11 +19,13 @@
           :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append-inner="show = !show"
         ></v-text-field>
-        <input type="submit" value="تسجيل الدخول" />
+        <input  type="submit" value="تسجيل الدخول" />
       </form>
     </v-col>
     <v-col class="image" cols="lg-6">
-      <img src="@/assets/image/login_img.jpg" alt="image" />
+      <!-- <img src="@/assets/image/login_img.jpg" alt="image" /> -->
+      image
+
     </v-col>
   </v-row>
 </template>
@@ -37,6 +39,11 @@ export default {
       show: false,
     };
   },
+  methods: {
+    submitForm(){
+       console.log("login")
+    }
+  }
 };
 </script>
 
