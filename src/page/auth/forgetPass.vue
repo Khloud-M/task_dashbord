@@ -17,7 +17,7 @@
 export default {
   data() {
     return {
-      phone: null,
+      phone: "",
     };
   },
   methods: {
@@ -30,11 +30,12 @@ export default {
         data: mydata,
       }).then(() => {
         localStorage.setItem("phone_num", this.phone);
-        if (this.phone.length == 11) {
+        if (this.phone.length === 11) {
           this.$toast.success(`تمت   بنجاح `);
           this.$router.push("/varifactionCode");
-        } else {
-          this.$toast.error(` "ب"ياناتك غير صحيحة`);
+        } else
+        if(this.phone.length < 11 || this.phone === "") {
+          this.$toast.error(` بياناتك غير صحيحة`);
         }
       });
     },

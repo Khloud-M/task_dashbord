@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from '@/components/HelloWorld.vue'
 import theLogin from "@/page/auth/theLogin.vue";
 import authWrapper from "@/page/auth/authWraaper.vue";
 import forgetpass from "@/page/auth/forgetPass.vue";
 import varifactionCode from "@/page/auth/varifactionCode.vue";
 import editPassword from "@/page/auth/editPassword.vue";
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -20,6 +21,7 @@ const router = createRouter({
         { path: "editPassword", component: editPassword ,props:true},
       ],
     },
+    {path:"/home" , component:HelloWorld}
   ],
   // linkActiveClass: "active",
   linkActiveClass: "active",

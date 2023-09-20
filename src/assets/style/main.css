@@ -64,16 +64,19 @@ input:-internal-autofill-selected {
   border-style: none !important;
 }
 
-input[type=submit] {
+input[type=submit]  , button[type=submit]{
   background-color: var(--main-color);
   color: white;
   border-radius: 20px;
   padding: 10px;
-  width: 150px;
+  /* width: 150px; */
   font-weight: bold;
   transition: all 0.5 linear;
 }
-input[type=submit]:hover{
+input[type=submit]  {
+  width: 150px;
+}
+input[type=submit]:hover  , button[type=submit]:hover{
   background-color: rgba(254, 142, 0,0.8);
 
 }
