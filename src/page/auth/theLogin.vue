@@ -27,7 +27,6 @@
 export default {
   data() {
     return {
-      isLoading: false,
       phone: null,
       password: null,
       show: false,
@@ -35,7 +34,8 @@ export default {
   },
   methods: {
     submitForm() {
-      this.isLoading = true;
+      console.log(this.phone.length);
+
       const mydata = new FormData();
       mydata.append("phone", this.phone);
       mydata.append("password", this.password);
@@ -44,16 +44,17 @@ export default {
         url: "https://apis.quickly-egypt.com/admin/users/auth/login.php",
         data: mydata,
       })
-        .then((response) => {
-          console.log("login ");
-          console.log(response);
-          this.$toast.success(`تم تسجيل الدخول بنجاح `);
+        .then(() => {
+          if(this.phone.length  == 11 && !this.password == "" && this.password.length > 6){
+            console.log(this.phone.length);
+
+            this.$toast.success(`تم تسجيل الدخول بنجاح `);
+          }
+          else{
+            this.$toast.error(` بياناتك غير صحيحة`);
+          }
+
         })
-        .catch((error) => {
-          this.isLoading = false;
-          console.log(error);
-          this.$toast.error(` بياناتك غير صحيحة`);
-        });
     },
   },
 };

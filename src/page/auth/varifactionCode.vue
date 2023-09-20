@@ -18,42 +18,100 @@
         v-model="verification_code"
       />
     </div>
-    <input type="submit" value=" تأكيد" :is-loading="isLoading" />
+    <div class="reset_code">
+      <button type="button" @click="countdown = 10">
+        <v-icon> mdi-arrow-u-left-top</v-icon>
+        إعادة إرسال الرمز مرة أخرى
+      </button>
+      <span> {{ countdown }}</span>
+    </div>
+    <input type="submit" value=" تأكيد" />
   </form>
-
 </template>
 
 <script>
 export default {
   data() {
     return {
-      verification_code: null,
+      verification_code: "",
       phone: localStorage.getItem("phone_num"),
+      timerCount: 30,
+      timerEnabled: true,
+      countdown: 10,
     };
   },
+  mounted() {
+    this.startCountdown();
+
+    this.$watch('verification_code', (value) => {
+      if (value !== '') {
+        this.stopCountdown();
+      }
+    });
+  },
+  watch: {
+    countdown(value) {
+      if (value === 0) {
+        this.stopCountdown();
+      }
+    },
+  },
   methods: {
+    handleOnComplete(e){
+      this.verification_code = e ;
+      console.log(e);
+    },
     submitForm() {
+      console.log(this.verification_code)
       const mydata = new FormData();
       mydata.append("verification_code", this.verification_code);
       this.axios({
         method: "POST",
         url: "https://apis.quickly-egypt.com/admin/users/auth/forget_password/confirm.php",
         data: mydata,
-      })
-        .then(() => {
+      }).then(() => {
+        if (this.verification_code.length == 4  ) {
           this.$router.push("/editPassword");
           this.$toast.success(`تمت   بنجاح `);
-        })
-        .catch(() => {
+        } else {
           this.$toast.error(` بياناتك غير صحيحة`);
-        });
-
+        }
+      });
+      // setTime()
     },
-  },
+    setTime() {
+      if (this.verification_code === "") {
+        setTimeout(() => {
+          this.timerCount--;
+        }, 1000);
+      }
+    },
+    startCountdown() {
+      this.timerEnabled = true;
+      this.countdown = 10;
+      setInterval(() => {
+        if (this.timerEnabled && this.countdown > 0) {
+          this.countdown--;
+        }
+      }, 1000);
+    },
+    stopCountdown() {
+      this.timerEnabled = false;
+    },
+  }
 };
 </script>
-<style >
-.myOtp{
+<style>
+.reset_code {
+  color: var(--main-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 100px;
+  align-items: center;
+  margin: 15px;
+}
+.myOtp {
   width: 100%;
   display: flex !important;
   justify-content: center;
@@ -88,6 +146,8 @@ h2 {
   margin-bottom: 10px;
   color: #232323;
 }
+.v-btn--variant-elevated {
+    box-shadow:none !important;
+}
 
-/* .text- */
 </style>

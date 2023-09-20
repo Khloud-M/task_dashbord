@@ -6,12 +6,11 @@
     <v-text-field
       label=" رقم الهاتف"
       type="tel"
-      v-modal="phone"
+      v-model="phone"
       append-inner-icon="mdi-phone"
     ></v-text-field>
-    <input type="submit" value=" إرسال" :is-loading="isLoading" />
+    <input type="submit" value=" إرسال" />
   </form>
-
 </template>
 
 <script>
@@ -29,17 +28,15 @@ export default {
         method: "POST",
         url: "https://apis.quickly-egypt.com/admin/users/auth/forget_password/send_code.php",
         data: mydata,
-      })
-        .then(() => {
-          localStorage.setItem("phone_num", this.phone);
-          this.$router.push("/varifactionCode");
+      }).then(() => {
+        localStorage.setItem("phone_num", this.phone);
+        if (this.phone.length == 11) {
           this.$toast.success(`تمت   بنجاح `);
-
-        })
-        .catch(() => {
-          this.$toast.error(` بياناتك غير صحيحة`);
-        });
-
+          this.$router.push("/varifactionCode");
+        } else {
+          this.$toast.error(` "ب"ياناتك غير صحيحة`);
+        }
+      });
     },
   },
 };
@@ -50,5 +47,4 @@ h2 {
   padding: 3px 0;
   color: #232323;
 }
-
 </style>

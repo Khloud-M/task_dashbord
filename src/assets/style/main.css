@@ -40,7 +40,13 @@
 a {
   text-decoration: none;
 }
-.v-field--variant-filled .v-field__overlay {
+input:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color: -internal-light-dark(rgb(232, 240, 254), rgba(12, 86, 223, 0.4)) !important;
+  color: fieldtext !important;
+}
+.login .v-field--variant-filled .v-field__overlay {
   background-color: transparent !important;
   opacity: 1 !important;
   border: 2px solid var(--main-color);
@@ -83,6 +89,8 @@ input[type=submit]:hover{
 
 .v-text-field input.v-field__input {
   height: 65px;
+  padding-right: 24px;
+  padding-bottom: 24px;
 }
 
 .v-input--density-default .v-field--variant-solo .v-label.v-field-label--floating, .v-input--density-default .v-field--variant-solo-inverted .v-label.v-field-label--floating, .v-input--density-default .v-field--variant-filled .v-label.v-field-label--floating, .v-input--density-default .v-field--variant-solo-filled .v-label.v-field-label--floating {
@@ -92,6 +100,7 @@ input[type=submit]:hover{
   right: 20px;
   font-size: 20px;
   color: var(--second-color);
+opacity: 1;
   /* color: white; */
 
 }
